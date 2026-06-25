@@ -214,7 +214,7 @@ function sendToWhatsAppWeb(name, phone, item, quantity, address) {
         "*Delivery Address:* " + encodeURIComponent(address) + "%0A%0A" +
         "💳 *Payment Mode:* Cash On Delivery";
 
-    let whatsappURL = "https://web.whatsapp.com/send?phone=919175017069&text=" + whatsappMessage;
+    let whatsappURL = "https://web.whatsapp.com/send?phone=919561870613&text=" + whatsappMessage;
     window.open(whatsappURL, "_blank");
 }
 
