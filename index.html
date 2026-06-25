@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Sweet Bakery | Freshly Baked Happiness</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>🍰 My Sweet Bakery</h1>
+    <p>Fresh Cakes, Pastries & Cookies Crafted with Love</p>
+</header>
+
+<nav>
+    <a onclick="showSection('home')" id="nav-home" class="active-nav">Home</a>
+    <a onclick="showSection('menu')" id="nav-menu">Our Menu</a>
+    <a onclick="showSection('watchlist')" id="nav-watchlist">Watchlist <span id="wl-count">0</span></a>
+    <a onclick="showSection('order')" id="nav-order">Place Order</a>
+    <a onclick="showSection('contact')" id="nav-contact">Contact & Reviews</a>
+</nav>
+
+<section id="home" class="section active">
+    <h2>Welcome to Sweet Bakery</h2>
+    <p class="hero-text">
+        We bake fresh cakes, pastries, cookies, and artisanal treats every single morning. 
+        Using only premium, locally sourced natural ingredients, we ensure happiness in every bite.
+    </p>
+    
+    <div style="text-align: center; margin-bottom: 40px;">
+        <button style="width: auto; padding: 15px 40px;" onclick="showSection('menu')">Explore Our Menu</button>
+    </div>
+
+    <h3 style="text-align:center; color: var(--secondary); margin-bottom: 20px;">Why Choose Us?</h3>
+    <div class="card-container">
+        <div class="card" style="padding:20px; min-height: auto;">
+            <h3>💯 100% Fresh</h3>
+            <p>Baked fresh daily in our kitchen. No overnight stale products, ever.</p>
+        </div>
+        <div class="card" style="padding:20px; min-height: auto;">
+            <h3>🚀 Fast Delivery</h3>
+            <p>Get your favorite treats delivered right to your doorstep under 40 minutes.</p>
+        </div>
+        <div class="card" style="padding:20px; min-height: auto;">
+            <h3>🎨 Custom Orders</h3>
+            <p>Planning a celebration? Call us to customize your cake designs and sizes.</p>
+        </div>
+    </div>
+</section>
+
+<section id="menu" class="section">
+    <h2>Our Signature Menu</h2>
+    <div class="card-container" id="menu-container"></div>
+</section>
+
+<section id="watchlist" class="section">
+    <h2>Your Watchlist</h2>
+    <div class="card-container" id="watchlist-container"></div>
+</section>
+
+<section id="order" class="section">
+    <h2>Place Your Order</h2>
+    <div class="form-wrapper">
+        <form onsubmit="placeOrder(); return false;">
+            <div class="form-group">
+                <label for="name">Customer Name</label>
+                <input type="text" id="name" placeholder="Enter your full name">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="Enter 10-digit mobile number">
+            </div>
+
+            <div class="form-group">
+                <label for="product">Select Bakery Item</label>
+                <select id="product"></select>
+            </div>
+
+            <div class="form-group">
+                <label for="qty">Quantity</label>
+                <input type="number" id="qty" min="1" value="1" placeholder="Minimum 1">
+            </div>
+
+            <div class="form-group">
+                <label for="address">Delivery Address</label>
+                <textarea id="address" rows="3" placeholder="Enter absolute drop-off street details"></textarea>
+            </div>
+
+            <button type="submit">Confirm Order Now</button>
+            <div id="result"></div>
+        </form>
+    </div>
+</section>
+
+<section id="contact" class="section">
+    <h2>Contact Us & Reviews</h2>
+
+    <div class="contact-container">
+        <div class="contact-info">
+            <div class="contact-item">
+                <span class="icon">📍</span>
+                <div>
+                    <strong>Address:</strong>
+                    <p>Sweet Bakery Main Market, In Front of Stand, Sangli, Maharashtra - 416312</p>
+                </div>
+            </div>
+            <div class="contact-item">
+                <span class="icon">📞</span>
+                <div>
+                    <strong>Phone:</strong>
+                    <p>+91 9561870613</p>
+                </div>
+            </div>
+            <div class="contact-item">
+                <span class="icon">✉</span>
+                <div>
+                    <strong>Email:</strong>
+                    <p>orders@sweetbakery.com</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-wrapper" style="width:100%; padding:25px;">
+            <h3>Drop a Message</h3><br>
+            <form onsubmit="sendEmailMessage(); return false;">
+                <input type="text" id="contactName" placeholder="Your Name" required style="margin-bottom: 10px;">
+                <input type="email" id="contactEmail" placeholder="Your Email" required style="margin-bottom: 10px;">
+                <textarea id="contactMsg" placeholder="Your Message" rows="3" required style="margin-bottom: 10px;"></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="reviews-section">
+        <hr style="border: 0; height: 1px; background: #e0e0e0; margin: 40px 0;">
+        <h3 style="color: var(--secondary); margin-bottom: 20px;">What Our Customers Say</h3>
+        
+        <div class="reviews-grid" id="reviewsContainer">
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="review-name">Shreya Jadhav</span>
+                    <span class="stars">★★★☆☆</span>
+                </div>
+                <p>"The Blueberry Cheesecake is out of this world! Melted in my mouth instantly."</p>
+            </div>
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="review-name">Srushti Bhosale</span>
+                    <span class="stars">★★★★☆</span>
+                </div>
+                <p>"Mango Mousse Cup is soft on inside. Recommended."</p>
+            </div>
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="review-name">Vedika Jadhav</span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <p>"Great Choco-Chip cookies. Crispy on edges and soft on inside. Recommended."</p>
+            </div>
+        </div>
+
+        <div class="form-wrapper" style="margin-top: 30px;">
+            <h3>Leave a Review</h3>
+            <div class="form-group" style="margin-top:15px;">
+                <label>Your Name</label>
+                <input type="text" id="revName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label>Your Rating</label>
+                <div class="rating-input" id="starRatingSelect">
+                    <span onclick="setRating(1)">★</span>
+                    <span onclick="setRating(2)">★</span>
+                    <span onclick="setRating(3)">★</span>
+                    <span onclick="setRating(4)">★</span>
+                    <span onclick="setRating(5)">★</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Comment</label>
+                <textarea id="revComment" rows="2" placeholder="Tell others how it tasted..."></textarea>
+            </div>
+            <button onclick="addReview()">Submit Review</button>
+        </div>
+    </div>
+</section>
+
+<footer>
+    © 2026 Sweet Bakery | Freshly Baked Happiness All Rights Reserved.
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
